@@ -21,16 +21,17 @@
 			background-color: #87CEEB
 		}
 		
-		h2: {
+		h2 {
+			text-align: center;
 			font-family: "Verdana", serif
 		}
 	</style>
 <body>
-	<h2><center>DogWalker Web App</center></h2>
+	<h2>DogWalker Web App</h2>
 	<div align=center>
 		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-		<a href="${contextPath}/client"> Client Page </a>
-		<a href="${contextPath}/schedule"> Schedule </a>
+		<a href="${contextPath}/clientHome/client"> Client Page </a>
+		<a href="${contextPath}/appointmentHome/schedule"> Schedule </a>
 		<a href="${contextPath}/invoices"> Invoices </a>
 	</div>
 </body>

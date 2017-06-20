@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Client</title>
 </head>
 <body>
 	<body>
@@ -12,11 +12,11 @@
 		<h2>Add A New Client:</h2>
 		<form action ="addClient">
 			<label id="client-first-name">First Name: </label><br/>
-			<input type = "text" name = "firstName"/><br/>
+			<input type = "text" placeholder="Enter First Name" name = "firstName"/><br/>
 			<label id="client-last-name">Last Name: </label><br/>
-			<input type = "text" name = "lastName"/><br/>
+			<input type = "text" placeholder="Enter Last Name" name = "lastName"/><br/>
 			<label id="client-address">Address: </label> <br/>
-			<input type = "text" name = "address"/> <br/>
+			<input type = "text"placeholder = "Enter Address"  name =  "address"/> <br/>
 			<input type = "submit" value = "Submit"> <br/>
 		</form>
 	</div>

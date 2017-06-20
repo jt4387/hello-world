@@ -14,7 +14,7 @@ public class DogWalkerClient
 	// For database purposes
 	public DogWalkerClient()
 	{
-		
+		this.pets = new ArrayList<>();
 	}
 	
 	public DogWalkerClient(String firstName, String lastName, String address) 
@@ -45,7 +45,7 @@ public class DogWalkerClient
 		this.address = address;
 	}
 
-	public void addPets(String petName) 
+	public void addPet(String petName) 
 	{
 		pets.add(petName);
 	}
@@ -73,6 +73,14 @@ public class DogWalkerClient
 	public List<String> getPets() 
 	{
 		return pets;
+	}
+	
+	public void addPets(List<String> petNames)
+	{
+		for (String petName : petNames)
+		{
+			pets.add(petName);
+		}
 	}
 
 

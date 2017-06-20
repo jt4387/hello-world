@@ -20,19 +20,20 @@
 			background-color: #87CEEB
 		}
 	
-	h2: {
-		font-family: "Verdana", serif
+	h2  {
+		font-family: "Verdana", serif;
+		text-align: center
 	}
 
 </style>
 </head>
 <body>
-	<h2><center> Main Client Page</center></h2>
+	<h2>Main Client Page</h2>
 	<div align=center>
 		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-		<a href="${contextPath}/getClientList"> Get Client List  </a>
-		<a href="${contextPath}/addClientForm"> Add Client </a>
-		<a href="${contextPath}/addPetForm"> Add Pet </a>
+		<a href="${contextPath}/clientHome/getClientList"> Get Client List </a>
+		<a href="${contextPath}/clientHome/addClientForm"> Add Client </a>
+		<a href="${contextPath}/clientHome/addPetForm"> Add Pet </a>
 	</div>
 </body>
 </html>

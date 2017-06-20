@@ -20,18 +20,19 @@
 			background-color: #87CEEB
 		}
 	
-	h2: {
-		font-family: "Verdana", serif
+	h2 {
+		font-family: "Verdana", serif;
+		text-align: center
 	}
 </style>
 </head>
 <body>
-	<h2><center>Schedule</center></h2>
+	<h2>Schedule</h2>
 	<div align=center>
 		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-		<a href="${contextPath}/getAllAppointments"> Get All Appointments</a>
-		<a href="${contextPath}/getAllClientAppointments"> Get All Appointments By Client</a>
-		<a href="${contextPath}/addClientForm"> Create/Delete/Update Appointment </a>
+		<a href="${contextPath}/appointmentHome/getAllAppointments"> Get All Appointments</a>
+		<a href="${contextPath}/appointmentHome/getAllClientAppointments"> Get All Appointments By Client</a>
+		<a href="${contextPath}/appointmentHome/somethingorother"> Create/Delete/Update Appointment </a>
 	</div>
 </body>
 </html>

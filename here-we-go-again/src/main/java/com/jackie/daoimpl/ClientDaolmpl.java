@@ -1,9 +1,13 @@
 package com.jackie.daoimpl;
 
+
 import java.util.List;
+
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,6 +23,7 @@ import com.jackie.domain.DogWalkerClient;
 public class ClientDaolmpl implements ClientDao
 {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private static Logger LOGGER = LoggerFactory.getLogger(ClientDaolmpl.class);
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource) 
@@ -27,7 +32,7 @@ public class ClientDaolmpl implements ClientDao
 	}
 
 	/*
-	 * Create a client record, and a pet record if the list of pets is not null
+	 * Create a client record
 	 */
 	public boolean createClient(DogWalkerClient dwc) 
 	{
@@ -59,9 +64,19 @@ public class ClientDaolmpl implements ClientDao
 		DogWalkerClient client = namedParameterJdbcTemplate.queryForObject(sqlQuery, params, 
 				new DogWalkerClientRowMapper());
 		
+		List<String> pets = this.getAllClientPets(id);
+		if(!pets.isEmpty()) // if there are pet entries found add to client
+		{	
+			// Add pets to client
+			client.addPets(pets);
+		}
 		return client;
 	}
-
+	
+	/**
+	 * Get a single pet
+	 * @param id the pet id
+	 */
 	public String getPet(Integer id) 
 	{
 		SqlParameterSource param = new MapSqlParameterSource("ID", id);
@@ -74,14 +89,30 @@ public class ClientDaolmpl implements ClientDao
 	{
 		String sqlQuery = "SELECT * FROM client_list";
 		List<DogWalkerClient> clientList = namedParameterJdbcTemplate.query(sqlQuery, new DogWalkerClientRowMapper());
+		// Get the client pets
+		for(DogWalkerClient client : clientList)
+		{
+			if(getAllClientPets(client.getId()) != null)
+			{
+				List<String> clientPets = getAllClientPets(client.getId());
+				for(String name: clientPets)
+				{
+					client.addPet(name);
+				}
+			}
+		}
 		return clientList;
 	}
 	
+	/**
+	 * Get all the pets belonging to a client
+	 * @param clientID, the client id
+	 */
 	public List<String> getAllClientPets(Integer clientID) 
 	{
-		SqlParameterSource params = new MapSqlParameterSource("ID", clientID);
+		MapSqlParameterSource params = new MapSqlParameterSource("ID", clientID);
 		String sqlQuery = "SELECT pet_name FROM pets WHERE c_id = :ID ";
-		List<String> petList = namedParameterJdbcTemplate.query(sqlQuery, new PetRowMapper());
+		List<String> petList = namedParameterJdbcTemplate.queryForList(sqlQuery,params, String.class);
 		return petList;
 	}
 	

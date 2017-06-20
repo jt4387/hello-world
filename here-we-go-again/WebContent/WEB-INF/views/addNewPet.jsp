@@ -11,9 +11,9 @@
 		<h2>Add A New Pet:</h2>
 		<form action = "addPet">
 			<label id = "client-id">Client ID: </label><br/>
-			<input type = "text" name = "clientID"><br/>
+			<input type = "text" placeholder="Enter client ID" name = "clientID"><br/>
 			<label id = "pet-name">Pet Name: </label><br/>
-			<input type = "text" name = "petName"><br/>
+			<input type = "text" placeholder="Enter new pet name" name = "petName"><br/>
 			<input type = "submit" value = "Submit"><br/>
 		</form>
 	</div>
